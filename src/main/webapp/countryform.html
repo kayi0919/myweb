@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<!-- ch4 CustomersQryServlet.java + countryform.html + web.xml -->
+<html>
+<head>
+<meta charset="UTF-8">
+<title>國家別客戶查詢</title>
+</head>
+<body>
+	<!-- 表單頁面 -->
+	<form method="post" action="countryqry.view">
+		<label>國家別</label>
+		<!-- 參數名稱 封裝在request裡面 -->
+		<select name="country">
+			<option value="美國">美國</option>
+			<option value="日本">日本</option>
+			<option value="英國">英國</option>
+			<option value="德國">德國</option>
+		</select>
+		<input type="submit" value="查詢"/>
+	</form>
+</body>
+</html>

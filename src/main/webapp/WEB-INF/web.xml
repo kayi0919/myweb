@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="https://jakarta.ee/xml/ns/jakartaee" xmlns:web="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_5_0.xsd http://xmlns.jcp.org/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="5.0">
+  <display-name>myweb</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+  </welcome-file-list>
+  
+  <!-- ch5 ch5 ServletContextDemo + AppConfig + web.xml + ApplicationHandler -->
+  <!-- 配置應用系統初始化參數 ConnectionString -->
+  <context-param>
+  	<param-name>connectionString</param-name>
+  	<param-value>jdbc:mysql://localhost:3306/demo</param-value>
+  </context-param>
+  <context-param>
+  	<param-name>company</param-name>
+  	<param-value>巨匠電腦</param-value>
+  </context-param>
+  
+  <!-- 佈署Deployment一個Servlet 何時產產生一個個體物件(配合第一前端請求 只有一個物件給所有的請求者)-->
+  <servlet>
+  	<!-- 設定一個識別Servlet名稱 具有唯一性 -->
+    <servlet-name>helloworld</servlet-name>
+    <servlet-class>com.gjun.view.HelloServlet</servlet-class>
+  </servlet>
+  
+  <!-- 描述Decriptor 對外的端點End Point -->
+  <servlet-mapping>
+    <servlet-name>helloworld</servlet-name>
+    <url-pattern>/hello.view</url-pattern>
+  </servlet-mapping>
+  
+  <!-- ch4 CustomersQryServlet.java + countryform.html + web.xml -->
+  <!-- 客戶查詢 依照國家別 -->
+  <servlet>
+    <servlet-name>customersQryByCountry</servlet-name>
+    <servlet-class>com.gjun.view.CustomersQryServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>customersQryByCountry</servlet-name>
+    <url-pattern>/countryqry.view</url-pattern>
+  </servlet-mapping>
+  
+  <!-- ch4 web.xml + CityServlet.java -->
+  <!-- 配置具有初始化參數的Servlet -->
+  <servlet>
+  	<servlet-name>cities</servlet-name>
+  	<servlet-class>com.gjun.view.CityServlet</servlet-class>
+  	<!-- 配置初始化參數 可以兩個以上 -->
+  	<init-param>
+  		<param-name>cities</param-name>
+  		<param-value>台北市,新北市,桃園市,台中市,台南市,高雄市</param-value>
+  	</init-param>
+  	<!-- 配置跟著應用系統同時啟動 -->
+  	<load-on-startup>1</load-on-startup>
+  </servlet>
+  
+  <servlet-mapping>
+  	<servlet-name>cities</servlet-name>
+  	<url-pattern>/city.view</url-pattern>
+  </servlet-mapping>
+  
+  <!-- ch5 ServletContextDemo + AppConfig + web.xml + ApplicationHandler + EncodingFilter -->
+  <!-- ch5 配置聆聽應用系統Listener -->
+  <listener>
+  	<listener-class>com.gjun.listener.ApplicationHandler</listener-class>
+  </listener>
+  
+  
+  <servlet>
+    <description></description>
+    <display-name>DownLoadingImgServlet</display-name>
+    <servlet-name>DownLoadingImgServlet</servlet-name>
+    <servlet-class>com.gjun.view.DownLoadingImgServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DownLoadingImgServlet</servlet-name>
+    <url-pattern>/DownLoadingImgServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>MyLifeHookServlet</display-name>
+    <servlet-name>MyLifeHookServlet</servlet-name>
+    <servlet-class>com.gjun.view.MyLifeHookServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MyLifeHookServlet</servlet-name>
+    <url-pattern>/MyLifeHookServlet</url-pattern>
+  </servlet-mapping>
+</web-app>
